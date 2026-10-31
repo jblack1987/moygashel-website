@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moygashel Regeneration Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Young+Serif&display=swap">
+<style>
+/* Layout: wide photo hero; quiet sections below; one orange action (Donate) as the single loud note. Palette comes from the logo: plum lettering, brick chimney, flax blue, lily orange, poppy red. */
+:root {
+  --bg: #F6F3F9;
+  --surface: #FFFFFF;
+  --fg: #251B2F;
+  --muted: #5E5370;
+  --line: #DED6E8;
+  --brand: #5C2A7A;
+  --on-brand: #FFFFFF;
+  --link: #5C2A7A;
+  --panel: #4A2064;
+  --on-panel: #FFFFFF;
+  --on-panel-muted: #D9C9E8;
+  --flax: #2A86C5;
+  --lily: #E8741F;
+  --poppy: #C9252D;
+  --brick: #B4746A;
+  --action: #E8741F;
+  --on-action: #1F1426;
+  --focus: #1B6FB0;
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #150F1C;
+    --surface: #211830;
+    --fg: #F3EEF8;
+    --muted: #B9AECA;
+    --line: #3A2D4C;
+    --brand: #8A55C4;
+    --link: #CBAEEF;
+    --panel: #321654;
+    --focus: #7CC0F2;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #150F1C;
+  --surface: #211830;
+  --fg: #F3EEF8;
+  --muted: #B9AECA;
+  --line: #3A2D4C;
+  --brand: #8A55C4;
+  --link: #CBAEEF;
+  --panel: #321654;
+  --focus: #7CC0F2;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.wrap {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.flowers { display: flex; width: 88px; height: 5px; margin-top: 14px; }
+.flowers span { flex: 1; }
+.flowers span:nth-child(1) { background: var(--flax); }
+.flowers span:nth-child(2) { background: var(--lily); }
+.flowers span:nth-child(3) { background: var(--poppy); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 1.5rem;
+  font: 700 1rem/1 var(--font-body);
+  text-decoration: none;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.btn-action { background: var(--action); color: var(--on-action); }
+.btn-action:hover { filter: brightness(1.06); }
+.btn-action[aria-disabled="true"] { background: transparent; color: var(--on-panel); border-color: var(--on-panel-muted); cursor: default; filter: none; }
+
+/* Header */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; gap: 1rem; padding-block: 0.75rem; }
+.brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--fg); min-width: 0; }
+.brand img { height: 76px; width: auto; border-radius: 4px; background: #fff; flex: none; }
+.brand b { font-family: var(--font-display); font-weight: 400; font-size: 1.125rem; line-height: 1.15; }
+.site-nav { margin-left: auto; display: flex; align-items: center; gap: 1.5rem; }
+.site-nav a:not(.btn) { color: var(--fg); text-decoration: none; font-weight: 600; font-size: 0.9375rem; }
+.site-nav a:not(.btn):hover { color: var(--link); text-decoration: underline; text-underline-offset: 4px; }
+.site-nav .btn { min-height: 42px; padding: 0 1.1rem; font-size: 0.9375rem; }
+@media (max-width: 760px) { .site-nav a:not(.btn) { display: none; } .brand b { font-size: 1rem; } }
+
+/* Hero */
+.hero { padding-block: 1.5rem 0; }
+.hero-photo { margin: 0; position: relative; z-index: 0; }
+.hero-photo img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 40%; border-radius: 4px; background: var(--line); }
+.hero-panel {
+  padding-top: 2rem;
+  display: grid; gap: 1rem;
+}
+.hero-panel h1 { font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem); color: var(--fg); }
+.hero-panel p { color: var(--muted); max-width: 46ch; }
+.values { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brand); }
+.values span + span::before { content: "\00B7"; margin-right: 1rem; color: var(--lily); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.25rem; }
+.btn-ghost { color: var(--brand); border-color: var(--line); }
+.btn-ghost:hover { background: var(--surface); border-color: var(--brand); }
+@media (max-width: 860px) {
+  .hero-photo img { aspect-ratio: 4 / 3; }
+}
+
+/* Sections */
+section { padding-block: 4.5rem 0; }
+.section-head { display: grid; gap: 0.5rem; margin-bottom: 1.75rem; }
+.section-head h2 { font-size: clamp(1.6rem, 1rem + 2vw, 2.4rem); }
+
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.about-text { display: grid; gap: 1rem; max-width: 62ch; }
+.value-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.value-list li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1rem; padding-block: 1.1rem; border-bottom: 1px solid var(--line); }
+.value-list h3 { font-size: 1.25rem; }
+.value-list p { color: var(--muted); }
+@media (max-width: 860px) { .about-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; } }
+@media (max-width: 440px) { .value-list li { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; } }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1rem; }
+.tile { margin: 0; position: relative; }
+.tile button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 4px; overflow: hidden; }
+.tile img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.4s; background: var(--line); }
+.tile button:hover img { transform: scale(1.03); }
+.tile figcaption { padding-top: 0.5rem; font-size: 0.9375rem; color: var(--muted); }
+@media (min-width: 700px) { .tile-featured { grid-column: span 2; } }
+@media (prefers-reduced-motion: reduce) { .tile img { transition: none; } .tile button:hover img { transform: none; } }
+.tile.contain img { object-fit: contain; background: #14101a; }
+.tile.contain-light img { object-fit: contain; background: #fff; }
+
+.album + .album { margin-top: 3.5rem; }
+.album-head { display: grid; gap: 0.4rem; margin-bottom: 1.25rem; }
+.album-head h3 { font-size: clamp(1.35rem, 1rem + 1.2vw, 1.75rem); }
+.album-head p { color: var(--muted); max-width: 64ch; }
+.coming { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--line); display: grid; gap: 0.6rem; }
+.coming-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.coming-list li { border: 1px solid var(--line); border-radius: 999px; padding: 0.3rem 0.9rem; font-size: 0.9375rem; color: var(--muted); }
+
+.lb { position: fixed; inset: 0; z-index: 50; background: rgba(12, 6, 18, 0.92); display: grid; place-items: center; align-content: center; gap: 0.75rem;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb[hidden] { display: none; }
+.lb img { max-width: 100%; max-height: 80vh; border-radius: 4px; }
+.lb p { color: #E8DFF1; text-align: center; max-width: 60ch; }
+.lb-close { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px);
+  width: 48px; height: 48px; border-radius: 50%; border: 2px solid #E8DFF1; background: transparent; color: #fff; font-size: 1.75rem; line-height: 1; cursor: pointer; }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 2px solid #E8DFF1; background: rgba(12, 6, 18, 0.55); color: #fff; font-size: 1.75rem; line-height: 1; cursor: pointer; }
+.lb-prev { left: calc(env(safe-area-inset-left, 0px) + 12px); }
+.lb-next { right: calc(env(safe-area-inset-right, 0px) + 12px); }
+.lb-count { font-size: 0.875rem; letter-spacing: 0.08em; color: #C9BBD8; }
+
+/* Get involved */
+.involved { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.involved-text { display: grid; gap: 1rem; max-width: 56ch; }
+.contact-card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; display: grid; gap: 1rem; }
+.contact-card dl { margin: 0; display: grid; gap: 0.9rem; }
+.contact-card dt { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.contact-card dd { margin: 0.1rem 0 0; font-weight: 600; overflow-wrap: anywhere; user-select: all; }
+.contact-card .pending { color: var(--muted); }
+@media (max-width: 860px) { .involved { grid-template-columns: minmax(0, 1fr); gap: 2rem; } }
+
+/* Donate */
+.donate { margin-top: 5rem; background: var(--panel); color: var(--on-panel); padding-block: 4rem; }
+section.donate { padding-block: 4rem; }
+.donate-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
+.donate h2 { font-size: clamp(1.8rem, 1rem + 2.4vw, 2.8rem); }
+.donate p { color: var(--on-panel-muted); max-width: 52ch; }
+.donate-copy { display: grid; gap: 1rem; }
+.donate-methods { display: grid; gap: 1.25rem; }
+.donate-box { border: 1px solid rgba(255,255,255,0.25); border-radius: 6px; padding: 1.5rem; display: grid; gap: 1rem; }
+.donate-box h3 { font-size: 1.0625rem; font-family: var(--font-body); font-weight: 700; color: var(--on-panel); }
+.methods { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.methods li { border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 0.3rem 0.85rem; font-size: 0.875rem; font-weight: 600; color: var(--on-panel); }
+.donate-box .btn { width: 100%; }
+.btn-paypal { background: #FFC439; color: #1A1A1A; }
+.btn-paypal:hover { filter: brightness(1.04); }
+.btn-paypal[aria-disabled="true"] { background: transparent; color: var(--on-panel); border-color: var(--on-panel-muted); cursor: default; filter: none; }
+.donate-note { font-size: 0.9375rem; color: var(--on-panel-muted); }
+@media (max-width: 860px) { .donate-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; } }
+
+/* Footer */
+.site-footer { padding-block: 2rem 2.5rem; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; color: var(--muted); font-size: 0.9375rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Moygashel Regeneration Group, home">
+      <img src="/logo.jpg" alt="Moygashel Regeneration Group logo: a brick mill chimney beside a flax flower, lily and poppy inside a ring reading Duty, Loyalty, Community">
+      <b>Moygashel<br>Regeneration Group</b>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#involved">Get involved</a>
+      <a class="btn btn-action" href="#donate">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <figure class="hero-photo" id="hero-photo-fig">
+        <img id="hero-photo-img" src="/img/hero-01.jpg" alt="Moygashel Regeneration Group volunteers at work" style="object-position:50% 50%">
+      </figure>
+      <div class="hero-panel">
+        <div class="values"><span>Duty</span><span>Loyalty</span><span>Community</span></div>
+        <h1 id="hero-title">Moygashel Regeneration Group</h1>
+        <p id="hero-tagline">Neighbours giving their time to look after the village.</p>
+        <div class="hero-actions">
+          <a class="btn btn-action" href="#donate">Donate</a>
+          <a class="btn btn-ghost" href="#involved">Volunteer with us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="wrap about-grid">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">About us</span>
+          <h2 id="about-h">A village group, run by the village</h2>
+          <div class="flowers" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+        <div class="about-text" id="about-text">
+          <p id="about-p1">We are volunteers from Moygashel who work together to improve the place we live. Our logo shows the old mill chimney with a flax flower, a lily and a poppy, a nod to the village's linen heritage and to the people who have made it what it is.</p>
+          <p id="about-extra">Recent projects include communal area clean-ups, a winter safety initiative, an elderly winter lighting project, an electrical safety initiative, community fun days and educational day trips.</p>
+          <p id="about-p2">Each new project is a chance for neighbours to get involved, whether that means picking up a tool, bringing a flask of tea or sharing an idea.</p>
+        </div>
+      </div>
+      <ul class="value-list" aria-label="Our values">
+        <li><h3>Duty</h3><p>Turning up and doing the work that needs doing.</p></li>
+        <li><h3>Loyalty</h3><p>Standing by the village and the people who live in it.</p></li>
+        <li><h3>Community</h3><p>Open to everyone who wants to lend a hand.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="gallery" aria-labelledby="gallery-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Gallery</span>
+        <h2 id="gallery-h">Our work in pictures</h2>
+        <div class="flowers" aria-hidden="true"><span></span><span></span><span></span></div>
+      </div>
+      <div id="albums-mount"></div>
+    </div>
+  </section>
+
+  <section id="involved" aria-labelledby="involved-h">
+    <div class="wrap involved">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Get involved</span>
+          <h2 id="involved-h">Come and give us a hand</h2>
+          <div class="flowers" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+        <div class="involved-text">
+          <p>You do not need any experience and you can give as much or as little time as you like. If you live in or near Moygashel and want to help, or you have an idea for the village, get in touch.</p>
+        </div>
+      </div>
+      <div class="contact-card" id="contact-card">
+        <dl id="contact-list"></dl>
+        <p class="pending" id="contact-pending">Contact details are being added. Check back soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="donate" id="donate" aria-labelledby="donate-h">
+    <div class="wrap donate-grid">
+      <div class="donate-copy">
+        <span class="eyebrow" style="color: var(--on-panel-muted)">Support us</span>
+        <h2 id="donate-h">Help us keep Moygashel looking its best</h2>
+        <p>Donations help the group carry out new projects in the village. Give once, in a minute, from your phone or computer.</p>
+      </div>
+      <div class="donate-methods">
+        <div class="donate-box">
+          <h3>Card, Apple Pay or Google Pay</h3>
+          <ul class="methods" aria-label="Ways to pay">
+            <li>Apple Pay</li><li>Google Pay</li><li>Debit card</li><li>Credit card</li>
+          </ul>
+          <a class="btn btn-action" id="stripe-btn" href="#donate">Donate now</a>
+          <p class="donate-note" id="stripe-note">Payments are handled by a secure payment provider, so card details never pass through this site.</p>
+        </div>
+        <div class="donate-box">
+          <h3>PayPal</h3>
+          <p class="donate-note">Already have a PayPal account? Give that way instead.</p>
+          <a class="btn btn-paypal" id="paypal-btn" href="#donate">Donate with PayPal</a>
+          <p class="donate-note" id="paypal-note"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Moygashel Regeneration Group</span>
+    <span>Moygashel, County Tyrone</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button type="button" class="lb-close" id="lb-close" aria-label="Close photo">&times;</button>
+  <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous photo">&lsaquo;</button>
+  <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next photo">&rsaquo;</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+  <p class="lb-count" id="lb-count"></p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  function esc(s) { return s == null ? "" : String(s); }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  // ---- Hero photo rotation ----
+  var heroImg = document.getElementById("hero-photo-img");
+  var heroTimer = null, heroPhotos = null, heroIdx = 0;
+  function applyHero(list) {
+    if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
+    if (!list || !list.length) return;
+    heroPhotos = list; heroIdx = 0;
+    heroImg.style.transition = "opacity 0.35s ease";
+    heroImg.src = heroPhotos[0].src;
+    heroImg.style.objectPosition = heroPhotos[0].pos || "50% 40%";
+    if (heroPhotos[0].alt) heroImg.alt = heroPhotos[0].alt;
+    if (heroPhotos.length < 2) return;
+    heroTimer = setInterval(function () {
+      heroIdx = (heroIdx + 1) % heroPhotos.length;
+      heroImg.style.opacity = "0";
+      setTimeout(function () {
+        heroImg.src = heroPhotos[heroIdx].src;
+        heroImg.style.objectPosition = heroPhotos[heroIdx].pos || "50% 40%";
+        if (heroPhotos[heroIdx].alt) heroImg.alt = heroPhotos[heroIdx].alt;
+        heroImg.style.opacity = "1";
+      }, 350);
+    }, 5000);
+  }
+
+  // ---- Gallery rendering ----
+  function buildTile(ph, n) {
+    var cls = "tile" + (n === 0 ? " tile-featured" : "") + (ph.fit ? " " + ph.fit : "");
+    var fig = el("figure", cls);
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.setAttribute("data-cap", ph.caption || "");
+    btn.setAttribute("aria-label", "Open photo: " + (ph.caption || ""));
+    var img = document.createElement("img");
+    img.src = ph.image; img.alt = ph.alt || ""; img.loading = "lazy";
+    img.style.objectPosition = ph.position || "50% 50%";
+    btn.appendChild(img);
+    fig.appendChild(btn);
+    fig.appendChild(el("figcaption", null, ph.caption || ""));
+    return fig;
+  }
+
+  function buildAlbum(al, i) {
+    var albEl = el("div", "album");
+    albEl.id = "album-" + (al.id || ("a" + i));
+    var head = el("div", "album-head");
+    head.appendChild(el("h3", null, al.title || ""));
+    head.appendChild(el("p", null, al.blurb || ""));
+    var gal = el("div", "gallery");
+    (al.photos || []).forEach(function (ph, n) { gal.appendChild(buildTile(ph, n)); });
+    albEl.appendChild(head); albEl.appendChild(gal);
+    return albEl;
+  }
+
+  function renderGallery(albums, comingSoon) {
+    var mount = document.getElementById("albums-mount");
+    if (!mount) return;
+    mount.innerHTML = "";
+    (albums || []).forEach(function (al, i) {
+      if (al.hidden) return;
+      mount.appendChild(buildAlbum(al, i));
+    });
+    if (comingSoon && comingSoon.length) {
+      var box = el("div", "coming");
+      box.appendChild(el("span", "eyebrow", "More albums coming soon"));
+      var ul = el("ul", "coming-list");
+      comingSoon.forEach(function (c) { ul.appendChild(el("li", null, c)); });
+      box.appendChild(ul);
+      mount.appendChild(box);
+    }
+  }
+
+  // ---- Donate / contact wiring ----
+  function wireDonateButton(btn, note, url, pendingText) {
+    if (url) {
+      btn.href = url;
+      btn.target = "_blank";
+      btn.rel = "noopener noreferrer";
+      btn.removeAttribute("aria-disabled");
+      if (note) note.textContent = note.getAttribute("data-default") || note.textContent;
+    } else {
+      btn.setAttribute("aria-disabled", "true");
+      btn.textContent = "Opening soon";
+      btn.addEventListener("click", function (e) { e.preventDefault(); });
+      if (note) note.textContent = pendingText;
+    }
+  }
+
+  function renderSite(data) {
+    var site = data.site || {};
+    var setText = function (id, val) { var e = document.getElementById(id); if (e && val != null) e.textContent = val; };
+    setText("hero-title", site.hero_title);
+    setText("hero-tagline", site.hero_tagline);
+    setText("about-h", site.about_heading);
+    setText("about-p1", site.about_p1);
+    setText("about-extra", site.about_extra);
+    setText("about-p2", site.about_p2);
+    setText("gallery-h", site.gallery_heading);
+    setText("involved-h", site.involved_heading);
+    setText("donate-h", site.donate_heading);
+
+    var extraEl = document.getElementById("about-extra");
+    if (extraEl) extraEl.hidden = !site.about_extra;
+
+    wireDonateButton(
+      document.getElementById("stripe-btn"),
+      document.getElementById("stripe-note"),
+      site.stripe_url,
+      "Our online donation page is being set up. It will take Apple Pay, Google Pay and debit or credit cards."
+    );
+    wireDonateButton(
+      document.getElementById("paypal-btn"),
+      document.getElementById("paypal-note"),
+      site.paypal_url,
+      "Our PayPal donation link is being set up."
+    );
+
+    var list = document.getElementById("contact-list");
+    var rows = 0;
+    function row(label, node) {
+      var dt = document.createElement("dt"); dt.textContent = label;
+      var dd = document.createElement("dd"); dd.appendChild(node);
+      list.appendChild(dt); list.appendChild(dd); rows++;
+    }
+    if (site.email) {
+      var a = document.createElement("a"); a.href = "mailto:" + site.email; a.textContent = site.email;
+      row("Email", a);
+    }
+    if (site.facebook) {
+      var f = document.createElement("a"); f.href = site.facebook; f.target = "_blank"; f.rel = "noopener noreferrer"; f.textContent = "Find us on Facebook";
+      row("Facebook", f);
+    }
+    document.getElementById("contact-pending").hidden = rows > 0;
+    list.hidden = rows === 0;
+
+    renderGallery(data.albums, site.coming_soon);
+
+    var heroList = (data.hero_photos || []).map(function (p) { return { src: p.image, alt: p.alt, pos: p.position }; });
+    (data.albums || []).forEach(function (al) {
+      if (al.hidden) return;
+      (al.photos || []).forEach(function (p) { heroList.push({ src: p.image, alt: p.alt, pos: p.position }); });
+    });
+    applyHero(heroList);
+  }
+
+  fetch("/content/data.json", { cache: "no-store" })
+    .then(function (r) { return r.json(); })
+    .then(renderSite)
+    .catch(function (err) { console.error("Couldn't load site content", err); });
+
+  // ---- Lightbox (event delegation, works for dynamically-added tiles) ----
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img"), lbCap = document.getElementById("lb-cap"),
+      lbCount = document.getElementById("lb-count"), lbClose = document.getElementById("lb-close"),
+      lbPrev = document.getElementById("lb-prev"), lbNext = document.getElementById("lb-next");
+  var group = [], idx = 0, opener = null, touchX = null;
+  function show(i) {
+    idx = (i + group.length) % group.length;
+    var b = group[idx], im = b.querySelector("img");
+    lbImg.src = im.src;
+    lbImg.alt = im.alt;
+    lbCap.textContent = b.getAttribute("data-cap") || "";
+    lbCount.textContent = group.length > 1 ? (idx + 1) + " of " + group.length : "";
+  }
+  function openLb(b) {
+    opener = b;
+    var albEl = b.closest(".album");
+    group = Array.prototype.slice.call((albEl || document).querySelectorAll(".tile button"));
+    var multi = group.length > 1;
+    lbPrev.hidden = !multi; lbNext.hidden = !multi;
+    show(group.indexOf(b));
+    lb.hidden = false;
+    lbClose.focus();
+  }
+  function closeLb() {
+    lb.hidden = true;
+    lbImg.removeAttribute("src");
+    if (opener) opener.focus();
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".tile button");
+    if (btn) openLb(btn);
+  });
+  lbClose.addEventListener("click", closeLb);
+  lbPrev.addEventListener("click", function () { show(idx - 1); });
+  lbNext.addEventListener("click", function () { show(idx + 1); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+  lb.addEventListener("touchstart", function (e) { touchX = e.changedTouches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    if (touchX === null || group.length < 2) return;
+    var dx = e.changedTouches[0].clientX - touchX; touchX = null;
+    if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+  document.addEventListener("keydown", function (e) {
+    if (lb.hidden) return;
+    if (e.key === "Escape") closeLb();
+    else if (e.key === "ArrowLeft" && group.length > 1) show(idx - 1);
+    else if (e.key === "ArrowRight" && group.length > 1) show(idx + 1);
+  });
+})();
+</script>
+</body>
+</html>
