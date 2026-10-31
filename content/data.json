@@ -1,56 +1,56 @@
 {
   "site": {
-    "hero_title": "Moygashel Regeneration Group",
+    "paypal_url": "https://www.paypal.com/ncp/payment/BDVSM6G3AMJTE",
+    "facebook": "",
     "hero_tagline": "A direct action community group getting things done without the fuss",
+    "involved_heading": "Come and give us a hand",
     "about_heading": "creating a safe, secure living environment for local people",
-    "about_p1": "Moygashel Regeneration Group is a fully constituted community group who operate primarily in the village of Moygashel.  Our membership are just ordinary decent folk who are passionate about the keeping their community safe and prosperous.  Our logo shows the old mill chimney with a flax flower, a lily and a poppy, a nod to the village's linen heritage and to the people who have made it what it is.  With government public services facing unprecedented strains, groups like ours are essential to take up the slack and get things done the common sense way whilst ensuring value for money is achieved on every project we deliver.",
-    "about_extra": "Recent projects include communal area clean-ups, a winter safety initiative, an elderly winter lighting project, an electrical safety initiative, community fun days and educational day trips.",
+    "donate_heading": "Help us keep Moygashel looking its best",
+    "hero_title": "Moygashel Regeneration Group",
+    "about_p1": "Moygashel Regeneration Group is a fully constituted community group who operate primarily in the village of Moygashel.  Our membership are just ordinary decent folk who are passionate about keeping their community safe and prosperous.  Our logo shows the old mill chimney with a flax flower, a lily and a poppy, a nod to the village's linen heritage and to the people who have made it what it is.  With government public services facing unprecedented strains, groups like ours are essential to take up the slack and get things done the common sense way whilst ensuring value for money is achieved on every project we deliver.",
     "about_p2": "Each new project is a chance for neighbours to get involved, whether that means picking up a tool, bringing a flask of tea or sharing an idea.  The majority of the group projects are self funded by the members themselves who not only give up their free time but are happy to contribute financially.",
     "gallery_heading": "Our work in pictures",
-    "involved_heading": "Come and give us a hand",
-    "donate_heading": "Help us keep Moygashel looking its best",
     "coming_soon": [
       "Communal Areas Clean-Ups"
     ],
-    "stripe_url": "https://buy.stripe.com/3cI9AS1YTbSX0tUbNTcV200",
-    "paypal_url": "https://www.paypal.com/ncp/payment/BDVSM6G3AMJTE",
     "email": "",
-    "facebook": ""
+    "stripe_url": "https://buy.stripe.com/3cI9AS1YTbSX0tUbNTcV200",
+    "about_extra": "Recent projects include communal area clean-ups, a winter safety initiative, an elderly winter lighting project, an electrical safety initiative, community fun days and educational day trips."
   },
   "hero_photos": [
     {
       "image": "/img/hero-01.jpg",
-      "alt": "",
+      "alt": "hilda and Roy ",
       "position": "50% 50%"
     },
     {
       "image": "/img/hero-02.jpg",
-      "alt": "",
+      "alt": "Funday overhead ",
       "position": "50% 50%"
     },
     {
       "image": "/img/hero-03.jpg",
-      "alt": "",
+      "alt": "coronation mugs ",
       "position": "50% 50%"
     },
     {
       "image": "/img/hero-04.jpg",
-      "alt": "",
+      "alt": "the team ",
       "position": "50% 50%"
     },
     {
       "image": "/img/hero-05.jpg",
-      "alt": "",
+      "alt": "salting trailer ",
       "position": "50% 50%"
     },
     {
       "image": "/img/hero-06.jpg",
-      "alt": "",
+      "alt": "salting pensioners estate ",
       "position": "50% 50%"
     },
     {
       "image": "/img/hero-07.jpg",
-      "alt": "",
+      "alt": "overhead view of Moygashel",
       "position": "50% 50%"
     }
   ],
