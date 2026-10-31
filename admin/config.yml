@@ -1,0 +1,79 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+site_url: https://moygashelregenerationgroup.org
+display_url: https://moygashelregenerationgroup.org
+
+collections:
+  - name: "site"
+    label: "Website Content"
+    files:
+      - name: "data"
+        label: "Edit the website"
+        file: "content/data.json"
+        editor:
+          preview: false
+        fields:
+          - label: "Page text"
+            name: "site"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Main heading (top of homepage)", name: "hero_title", widget: "string" }
+              - { label: "Tagline (under the heading)", name: "hero_tagline", widget: "string" }
+              - { label: "'About us' heading", name: "about_heading", widget: "string" }
+              - { label: "About — paragraph 1", name: "about_p1", widget: "text" }
+              - { label: "About — recent projects summary", name: "about_extra", widget: "text", required: false, hint: "A short line listing current projects. Leave blank to hide." }
+              - { label: "About — paragraph 2", name: "about_p2", widget: "text" }
+              - { label: "'Gallery' heading", name: "gallery_heading", widget: "string" }
+              - { label: "'Get involved' heading", name: "involved_heading", widget: "string" }
+              - { label: "'Donate' heading", name: "donate_heading", widget: "string" }
+              - label: "Albums coming soon (listed at the bottom of the gallery)"
+                name: "coming_soon"
+                widget: "list"
+                required: false
+                field: { label: "Album name", name: "name", widget: "string" }
+              - { label: "Stripe donate link (card / Apple Pay / Google Pay)", name: "stripe_url", widget: "string", required: false, hint: "Leave blank to show 'Opening soon' instead of a working button." }
+              - { label: "PayPal donate link", name: "paypal_url", widget: "string", required: false, hint: "Leave blank to show 'Opening soon' instead of a working button." }
+              - { label: "Public contact email", name: "email", widget: "string", required: false }
+              - { label: "Facebook page link", name: "facebook", widget: "string", required: false }
+
+          - label: "Main rotating photos (top of homepage)"
+            name: "hero_photos"
+            widget: "list"
+            summary: "{{alt}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Describe the photo (for accessibility)", name: "alt", widget: "string" }
+              - { label: "Crop position", name: "position", widget: "string", default: "50% 50%", hint: "Two percentages, e.g. '50% 40%' — first is left/right, second is up/down. Raise the second number if heads are getting cut off." }
+
+          - label: "Photo albums"
+            name: "albums"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Album title", name: "title", widget: "string" }
+              - { label: "Album description", name: "blurb", widget: "text", required: false }
+              - { label: "Hide this album from the site", name: "hidden", widget: "boolean", default: false }
+              - label: "Photos"
+                name: "photos"
+                widget: "list"
+                summary: "{{caption}}"
+                fields:
+                  - { label: "Photo", name: "image", widget: "image" }
+                  - { label: "Caption", name: "caption", widget: "string", required: false }
+                  - { label: "Describe the photo (for accessibility)", name: "alt", widget: "string" }
+                  - { label: "Crop position", name: "position", widget: "string", default: "50% 50%", hint: "Two percentages, e.g. '50% 50%' — first is left/right, second is up/down." }
+                  - label: "Display style"
+                    name: "fit"
+                    widget: "select"
+                    required: false
+                    default: ""
+                    options:
+                      - { label: "Fill the tile (default, may crop edges)", value: "" }
+                      - { label: "Show whole photo, dark background (good for posters)", value: "contain" }
+                      - { label: "Show whole photo, light background", value: "contain-light" }
