@@ -1,7 +1,7 @@
 {
   "site": {
     "paypal_url": "https://www.paypal.com/ncp/payment/BDVSM6G3AMJTE",
-    "facebook": "",
+    "facebook": "https://www.facebook.com/share/1CrJaGHGu1/",
     "hero_tagline": "A direct action community group getting things done without the fuss",
     "involved_heading": "Come and give us a hand",
     "about_heading": "creating a safe, secure living environment for local people",
@@ -24,7 +24,7 @@
       "position": "50% 50%"
     },
     {
-      "image": "/img/uploads/whatsapp-image-2026-10-30-at-22.58.23.jpeg",
+      "image": "/img/uploads/474476552_594663286817166_3840364237394087207_n.jpg",
       "alt": "village overhead",
       "position": "50% 50%"
     },
