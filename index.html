@@ -364,24 +364,60 @@ section.donate { padding-block: 4rem; }
   // ---- Hero photo rotation ----
   var heroImg = document.getElementById("hero-photo-img");
   var heroTimer = null, heroPhotos = null, heroIdx = 0;
+  var heroPreloaded = {};
+
+  function absUrl(u) { try { return new URL(u, location.href).href; } catch (e) { return u; } }
+
+  // Loads an image in the background and resolves once it's actually
+  // decodable, so we never swap heroImg.src to something that isn't ready yet
+  // (that's what caused the old "flash of the current picture" on every swap).
+  function preloadHero(src) {
+    var key = absUrl(src);
+    if (heroPreloaded[key]) return heroPreloaded[key];
+    var p = new Promise(function (resolve) {
+      var im = new Image();
+      im.onload = im.onerror = function () { resolve(); };
+      im.src = src;
+    });
+    heroPreloaded[key] = p;
+    return p;
+  }
+
+  function showHeroPhoto(i) {
+    var p = heroPhotos[i];
+    // Skip reassigning src when it's already showing this exact photo —
+    // re-setting an unchanged src can cause its own brief flash in some browsers.
+    if (absUrl(heroImg.src) !== absUrl(p.src)) heroImg.src = p.src;
+    heroImg.style.objectPosition = p.pos || "50% 40%";
+    if (p.alt) heroImg.alt = p.alt;
+  }
+
   function applyHero(list) {
     if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
     if (!list || !list.length) return;
     heroPhotos = list; heroIdx = 0;
     heroImg.style.transition = "opacity 0.35s ease";
-    heroImg.src = heroPhotos[0].src;
-    heroImg.style.objectPosition = heroPhotos[0].pos || "50% 40%";
-    if (heroPhotos[0].alt) heroImg.alt = heroPhotos[0].alt;
+
+    // Don't replace the placeholder photo already on the page until the real
+    // first rotation photo has actually loaded — this is what removes the
+    // millisecond flash on first page load.
+    preloadHero(heroPhotos[0].src).then(function () { showHeroPhoto(0); });
+    if (heroPhotos.length > 1) preloadHero(heroPhotos[1].src);
+
     if (heroPhotos.length < 2) return;
     heroTimer = setInterval(function () {
-      heroIdx = (heroIdx + 1) % heroPhotos.length;
-      heroImg.style.opacity = "0";
-      setTimeout(function () {
-        heroImg.src = heroPhotos[heroIdx].src;
-        heroImg.style.objectPosition = heroPhotos[heroIdx].pos || "50% 40%";
-        if (heroPhotos[heroIdx].alt) heroImg.alt = heroPhotos[heroIdx].alt;
-        heroImg.style.opacity = "1";
-      }, 350);
+      var nextIdx = (heroIdx + 1) % heroPhotos.length;
+      // Wait for the next photo to finish loading before starting the fade,
+      // so the old photo is never left on screen past its fade-out.
+      preloadHero(heroPhotos[nextIdx].src).then(function () {
+        heroIdx = nextIdx;
+        heroImg.style.opacity = "0";
+        setTimeout(function () {
+          showHeroPhoto(heroIdx);
+          heroImg.style.opacity = "1";
+          preloadHero(heroPhotos[(heroIdx + 1) % heroPhotos.length].src);
+        }, 350);
+      });
     }, 5000);
   }
 
