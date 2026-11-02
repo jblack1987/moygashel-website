@@ -240,7 +240,7 @@ section.donate { padding-block: 4rem; }
   <div class="hero">
     <div class="wrap">
       <figure class="hero-photo" id="hero-photo-fig">
-        <img id="hero-photo-img" src="/img/hero-01.jpg" alt="Moygashel Regeneration Group volunteers at work" style="object-position:50% 50%">
+        <img id="hero-photo-img" src="/img/hero-01.jpg" alt="Moygashel Regeneration Group volunteers at work" style="object-position:50% 50%;opacity:0;transition:opacity 0.35s ease">
       </figure>
       <div class="hero-panel">
         <div class="values"><span>Duty</span><span>Loyalty</span><span>Community</span></div>
@@ -398,10 +398,14 @@ section.donate { padding-block: 4rem; }
     heroPhotos = list; heroIdx = 0;
     heroImg.style.transition = "opacity 0.35s ease";
 
-    // Don't replace the placeholder photo already on the page until the real
-    // first rotation photo has actually loaded — this is what removes the
-    // millisecond flash on first page load.
-    preloadHero(heroPhotos[0].src).then(function () { showHeroPhoto(0); });
+    // The image starts hidden (opacity:0 in the HTML) so the placeholder photo
+    // baked into the page is never actually seen. Only reveal it once the
+    // real first rotation photo has finished loading — this is what removes
+    // the flash of a different photo on first page load.
+    preloadHero(heroPhotos[0].src).then(function () {
+      showHeroPhoto(0);
+      heroImg.style.opacity = "1";
+    });
     if (heroPhotos.length > 1) preloadHero(heroPhotos[1].src);
 
     if (heroPhotos.length < 2) return;
@@ -533,11 +537,9 @@ section.donate { padding-block: 4rem; }
 
     renderGallery(data.albums, site.coming_soon);
 
+    // Only use the curated "Main rotating photos" list for the hero rotation —
+    // not every photo in every album.
     var heroList = (data.hero_photos || []).map(function (p) { return { src: p.image, alt: p.alt, pos: p.position }; });
-    (data.albums || []).forEach(function (al) {
-      if (al.hidden) return;
-      (al.photos || []).forEach(function (p) { heroList.push({ src: p.image, alt: p.alt, pos: p.position }); });
-    });
     applyHero(heroList);
   }
 
