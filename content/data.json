@@ -7,20 +7,20 @@
     "about_heading": "creating a safe, secure living environment for local people",
     "donate_heading": "Help us keep Moygashel looking its best",
     "hero_title": "Moygashel Regeneration Group",
-    "about_p1": "Moygashel Regeneration Group is a fully constituted community group who operate primarily within the village of Moygashel.  Our members are just ordinary decent folk who are passionate about keeping their community safe and prosperous.  Our logo shows the old mill chimney with a flax flower, a lily and a poppy, a nod to the village's linen heritage and to the people who have made it what it is.  With government public services facing unprecedented strains, groups like ours are essential to take up the slack and get things done the common sense way whilst ensuring value for money is achieved on every project we deliver.",
-    "about_p2": "Each new project is a chance for neighbours to get involved, whether that means picking up a tool, bringing a flask of tea or sharing an idea.  The majority of the group projects are self funded by the members themselves who not only give up their free time but are happy to contribute financially to enrich their own community ",
+    "about_p1": "Moygashel Regeneration Group is a fully constituted community group who operate primarily in the village of Moygashel.  Our membership are just ordinary decent folk who are passionate about keeping their community safe and prosperous.  Our logo shows the old mill chimney with a flax flower, a lily and a poppy, a nod to the village's linen heritage and to the people who have made it what it is.  With government public services facing unprecedented strains, groups like ours are essential to take up the slack and get things done the common sense way whilst ensuring value for money is achieved on every project we deliver.",
+    "about_p2": "Each new project is a chance for neighbours to get involved, whether that means picking up a tool, bringing a flask of tea or sharing an idea.  The majority of the group projects are self funded by the members themselves who not only give up their free time but are happy to contribute financially.",
     "gallery_heading": "Our work in pictures",
     "coming_soon": [
       "Communal Areas Clean-Ups"
     ],
-    "email": "",
+    "email": "moyregenbusiness@gmail.com",
     "stripe_url": "https://buy.stripe.com/3cI9AS1YTbSX0tUbNTcV200",
-    "about_extra": "Recent projects include communal area clean-ups, a winter safety initiative, an elderly winter lighting project, an electrical safety initiative, community fun days and intergenerational educational day trips."
+    "about_extra": "Recent projects include communal area clean-ups, a winter safety initiative, an elderly winter lighting project, an electrical safety initiative, community fun days and educational day trips."
   },
   "hero_photos": [
     {
-      "image": "/img/uploads/474476552_594663286817166_3840364237394087207_n.jpg",
-      "alt": "funday overhead",
+      "image": "/img/uploads/logo-landscape.jpg",
+      "alt": "logo landscape ",
       "position": "50% 50%"
     },
     {
@@ -49,7 +49,7 @@
       "position": "50% 50%"
     },
     {
-      "image": "/img/hero-07.jpg",
+      "image": "/img/uploads/470218899_567006732916155_2686742475174146677_n.jpg",
       "alt": "overhead view of Moygashel",
       "position": "50% 50%"
     },
@@ -61,7 +61,7 @@
     {
       "position": "50% 40%",
       "alt": "empty",
-      "image": "/img/uploads/logo.jpg"
+      "image": "/img/uploads/474476552_594663286817166_3840364237394087207_n.jpg"
     }
   ],
   "albums": [
